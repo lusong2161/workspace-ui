@@ -442,39 +442,7 @@ body {
     color: var(--text-color);
 }
 
-.right-sidebar .workspace-icon {
-    width: 40px;
-    height: 40px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-large);
-    margin-bottom: 8px;
-    font-weight: 500;
-}
 
-.right-sidebar .upgrade-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--accent-color);
-    transition: all 0.2s ease;
-}
-
-.right-sidebar .upgrade-btn i {
-    font-size: var(--icon-size-medium);
-}
-
-.right-sidebar .upgrade-btn:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
 
 .edit-btn, .auto-btn {
     padding: 4px 12px;
