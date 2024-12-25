@@ -5,8 +5,11 @@ import Tasks from './Tasks';
 export const SearchContext = createContext();
 
 function App() {
+  console.log('App组件渲染开始');
   const [activeTab, setActiveTab] = useState('任务');
   const [searchText, setSearchText] = useState('');
+  
+  console.log('App组件状态:', { activeTab, searchText });
 
   return (
     <div className="app">
