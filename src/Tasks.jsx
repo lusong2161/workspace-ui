@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { SearchContext } from './App';
 import { useTasks } from './hooks/useTasks';
+import TaskDetails from './components/TaskDetails';
 import './styles/categories.css';
 import './styles/drag-and-drop.css';
 import './styles/due-date.css';
@@ -43,8 +44,9 @@ function Tasks() {
   };
   const [newTask, setNewTask] = useState('');
   const { searchText } = useContext(SearchContext);
+  const [selectedTask, setSelectedTask] = useState(null);
   
-  console.log('Tasks组件状态:', { tasks, newTask, searchText, editingTask });
+  console.log('Tasks组件状态:', { tasks, newTask, searchText, editingTask, selectedTask });
 
   console.log('当前搜索文本:', searchText);
   const filteredTasks = tasks.filter(task => {
@@ -193,7 +195,13 @@ function Tasks() {
                 <button onClick={saveEdit} className="save-button">保存</button>
               </div>
             ) : (
-              <div className="task-content">
+              <div 
+                className="task-content"
+                onClick={() => {
+                  console.log('点击任务，显示详情:', task);
+                  setSelectedTask(task);
+                }}
+              >
                 <div className="task-text">{task.text}</div>
                 <div className="task-metadata">
                   <span 
@@ -245,6 +253,17 @@ function Tasks() {
           </div>
         ))}
       </div>
+
+      {selectedTask && (
+        <TaskDetails
+          task={selectedTask}
+          categories={categories}
+          onClose={() => {
+            console.log('关闭任务详情');
+            setSelectedTask(null);
+          }}
+        />
+      )}
     </div>
   );
 }
