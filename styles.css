@@ -38,100 +38,13 @@ body {
 .container {
     display: grid;
     grid-template-columns: 60px 200px 1fr 60px;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
     min-height: 100vh;
+    gap: 0;
+    position: relative;
 }
 
-/* 顶部导航栏框体样式 */
-.top-frame {
-    grid-column: 1 / -1;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    margin: 12px;
-    padding: 0;
-    overflow: hidden;
-}
 
-/* 顶部导航栏样式 */
-.top-header {
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    background-color: transparent;
-    border-bottom: none;
-    height: 48px;
-}
-
-.workspace-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-weight: 500;
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    transition: all 0.2s ease;
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
-}
-
-.workspace-dropdown:hover {
-    background-color: var(--accent-hover);
-}
-
-.header-left, .header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.promo-banner {
-    flex-grow: 1;
-    text-align: center;
-    color: var(--text-color);
-    background-color: var(--promo-green);
-    font-size: var(--font-size-base);
-    padding: 4px 16px;
-    border-radius: 4px;
-    margin: 0 24px;
-}
-
-.workspace-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
-
-.avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
-
-.share-btn, .upgrade-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--text-color);
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.upgrade-btn {
-    background-color: var(--accent-color);
-}
 
 /* 侧边栏样式 */
 .sidebar {
@@ -175,19 +88,21 @@ body {
 
 .search-box {
     position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .search-box input {
-    width: 40px;
+    width: 100%;
     height: 40px;
-    padding: 8px;
+    padding: 8px 8px 8px 32px;
     background-color: var(--secondary-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-color);
     font-size: var(--font-size-base);
     transition: all 0.2s ease;
-    cursor: pointer;
+    cursor: text;
 }
 
 .search-box input:focus {
@@ -197,9 +112,11 @@ body {
 
 .search-box i {
     position: absolute;
-    left: 0.5rem;
+    left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
 }
 
 .sidebar-nav {
@@ -266,15 +183,12 @@ body {
 
 /* 主要内容区样式 */
 .main-content {
-    padding: 24px 24px 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
 }
 
-.content-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
+
 
 .secondary-nav {
     display: flex;
@@ -327,70 +241,11 @@ body {
     transform: scale(1.1);
 }
 
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
 
-.home-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
 
-.icon-nav {
-    display: flex;
-    gap: 1rem;
-}
 
-.icon-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-size: var(--icon-size-medium);
-    padding: 8px;
-    border-radius: 8px;
-}
 
-.icon-nav a:hover {
-    color: var(--text-color);
-}
 
-.icon-nav i {
-    font-size: var(--icon-size-medium);
-}
-
-.filter-btn, .create-btn {
-    padding: 6px 16px;
-    border-radius: 16px;
-    cursor: pointer;
-    color: var(--text-color);
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    transition: all 0.2s ease;
-}
-
-.filter-btn {
-    border: 1px solid var(--border-color);
-    background-color: transparent;
-}
-
-.create-btn {
-    border: none;
-    background-color: var(--accent-color);
-    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
-}
-
-.filter-btn {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-}
-
-.create-btn {
-    background-color: var(--accent-color);
-}
 
 .feature-cards {
     display: grid;

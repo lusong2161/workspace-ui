@@ -37,90 +37,14 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 60px 150px 1fr 60px;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 60px 200px 1fr 60px;
+    grid-template-rows: 1fr;
     min-height: 100vh;
+    gap: 0;
+    position: relative;
 }
 
-/* 顶部导航栏样式 */
-.top-header {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
-    height: 48px;
-}
 
-.workspace-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-weight: 500;
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    transition: all 0.2s ease;
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
-}
-
-.workspace-dropdown:hover {
-    background-color: var(--accent-hover);
-}
-
-.header-left, .header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.promo-banner {
-    flex-grow: 1;
-    text-align: center;
-    color: var(--text-color);
-    background-color: var(--promo-green);
-    font-size: var(--font-size-base);
-    padding: 4px 16px;
-    border-radius: 4px;
-    margin: 0 24px;
-}
-
-.workspace-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
-
-.avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
-
-.share-btn, .upgrade-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--text-color);
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.upgrade-btn {
-    background-color: var(--accent-color);
-}
 
 /* 侧边栏样式 */
 .sidebar {
@@ -140,7 +64,7 @@ body {
 
 /* 第二个导航栏样式 */
 .secondary-sidebar {
-    width: 150px;
+    width: 200px;
     padding: 1rem;
 }
 
@@ -255,7 +179,9 @@ body {
 
 /* 主要内容区样式 */
 .main-content {
-    padding: 24px 24px 0;
+    padding: 12px 24px 24px;
+    position: relative;
+    z-index: 1;
 }
 
 .content-nav {
@@ -372,14 +298,7 @@ body {
     box-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
 }
 
-.filter-btn {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-}
 
-.create-btn {
-    background-color: var(--accent-color);
-}
 
 .feature-cards {
     display: grid;

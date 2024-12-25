@@ -10,33 +10,9 @@
 </head>
 <body>
     <div class="container">
-        <!-- 顶部导航栏框体 -->
-        <div class="top-frame">
-            <header class="top-header" role="banner">
-                <div class="header-left">
-                    <div class="logo">Workspace</div>
-                    <div class="workspace-dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        工作空间 <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="promo-banner" role="alert" aria-live="polite">
-                    限时优惠：终身享受所有计划9折优惠！结账时使用优惠码10X。
-                </div>
-                <div class="header-right">
-                    <img src="https://via.placeholder.com/32" alt="User Avatar" class="avatar">
-                    <button class="share-btn" aria-label="分享"><i class="fas fa-share" aria-hidden="true"></i> 分享</button>
-                    <button class="upgrade-btn" aria-label="升级">升级</button>
-                </div>
-            </header>
-        </div>
-
         <!-- 左侧主导航栏 -->
         <aside class="sidebar primary-sidebar" role="complementary">
-            <form class="search-box" role="search">
-                <label for="search-input" class="sr-only">搜索</label>
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input type="search" id="search-input" placeholder="搜索..." aria-label="搜索">
-            </form>
+
             <nav class="sidebar-nav" role="navigation" aria-label="主导航">
                 <a href="#" class="nav-item active" aria-current="page" title="主页"><i class="fas fa-home" aria-hidden="true"></i><span class="sr-only">主页</span></a>
                 <a href="#" class="nav-item" title="新建文件夹"><i class="fas fa-folder-plus" aria-hidden="true"></i><span class="sr-only">新建文件夹</span></a>
@@ -54,6 +30,11 @@
 
         <!-- 第二个左侧导航栏 -->
         <aside class="sidebar secondary-sidebar" role="complementary">
+            <form class="search-box" role="search">
+                <label for="search-input" class="sr-only">搜索</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="search" id="search-input" placeholder="搜索..." aria-label="搜索">
+            </form>
             <nav class="sidebar-nav" role="navigation" aria-label="二级导航">
                 <a href="#" class="nav-item active" aria-current="page" title="项目"><i class="fas fa-project-diagram" aria-hidden="true"></i>项目</a>
                 <a href="#" class="nav-item" title="任务"><i class="fas fa-tasks" aria-hidden="true"></i>任务</a>
@@ -65,26 +46,7 @@
 
         <!-- 主要内容区 -->
         <main class="main-content">
-            <section class="content-header">
-                <nav class="content-nav">
-                    <div class="nav-left">
-                        <div class="home-dropdown" role="button" aria-haspopup="true">
-                            主页 <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="icon-nav" role="toolbar">
-                            <a href="#" title="日历"><i class="fas fa-calendar"></i></a>
-                            <a href="#" title="机器人"><i class="fas fa-robot"></i></a>
-                            <a href="#" title="用户"><i class="fas fa-users"></i></a>
-                            <a href="#" title="设置"><i class="fas fa-cogs"></i></a>
-                            <a href="#" title="媒体"><i class="fas fa-photo-video"></i></a>
-                        </div>
-                    </div>
-                    <div class="nav-right">
-                        <button class="filter-btn" aria-label="筛选"><i class="fas fa-filter"></i> 筛选</button>
-                        <button class="create-btn" aria-label="创建新的">创建新的</button>
-                    </div>
-                </nav>
-                <!-- 二级导航栏 -->
+            <!-- 二级导航栏 -->
                 <nav class="secondary-nav" role="navigation" aria-label="二级导航">
                     <a href="#" class="nav-tab active" aria-current="page">
                         <i class="fas fa-robot"></i>
