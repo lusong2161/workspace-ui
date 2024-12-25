@@ -56,17 +56,55 @@ body {
     border-right: 1px solid var(--border-color);
 }
 
+/* 搜索框 */
+.search-box {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-box i {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 8px 8px 2.5rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2d2d2d;
+    color: #fff;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #888;
+}
+
 /* 主导航栏样式 */
 .primary-sidebar {
     align-items: center;
     width: 60px;
-    padding-top: 1rem;
+    padding: 1rem 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--secondary-bg);
+    border-right: 1px solid var(--border-color);
 }
 
 /* 第二个导航栏样式 */
 .secondary-sidebar {
     width: 200px;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: var(--secondary-bg);
+    border-right: 1px solid var(--border-color);
 }
 
 .secondary-sidebar .nav-item {
@@ -83,7 +121,8 @@ body {
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    width: 100%;
 }
 
 .nav-item {
@@ -97,10 +136,36 @@ body {
     color: var(--text-color);
     border-radius: 8px;
     font-size: var(--font-size-base);
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
 }
 
 .nav-item i {
-    font-size: var(--icon-size-medium);
+    font-size: 20px;
+    margin-right: 0.5rem;
+    color: #888;  /* Inactive state */
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover i {
+    color: #ccc;  /* Hover state */
+    transform: scale(1.1);
+}
+
+.nav-item.active i {
+    color: #fff;  /* Active state */
+    transform: scale(1.1);
+}
+
+.nav-item {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ddd;
+}
+
+.nav-item.active {
+    font-weight: 600;
+    color: #fff;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -111,6 +176,9 @@ body {
 
 .sidebar-bottom {
     margin-top: auto;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
 }
 
 .workspace-icon {

@@ -12,10 +12,34 @@
     <div class="container">
         <!-- 左侧主导航栏 -->
         <aside class="sidebar primary-sidebar" role="complementary">
+            <form class="search-box" role="search">
+                <label for="search-input" class="sr-only">搜索</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="搜索..."
+                    aria-label="搜索"
+                />
+            </form>
 
             <nav class="sidebar-nav" role="navigation" aria-label="主导航">
-                <a href="#" class="nav-item active" aria-current="page" title="主页"><i class="fas fa-home" aria-hidden="true"></i><span class="sr-only">主页</span></a>
-                <a href="#" class="nav-item" title="新建文件夹"><i class="fas fa-folder-plus" aria-hidden="true"></i><span class="sr-only">新建文件夹</span></a>
+                <a href="#" class="nav-item active" aria-current="page" title="主页">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span class="sr-only">主页</span>
+                </a>
+                <a href="#" class="nav-item" title="新建文件夹">
+                    <i class="fas fa-folder-plus" aria-hidden="true"></i>
+                    <span class="sr-only">新建文件夹</span>
+                </a>
+                <a href="#" class="nav-item" title="收藏夹">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span class="sr-only">收藏夹</span>
+                </a>
+                <a href="#" class="nav-item" title="设置">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <span class="sr-only">设置</span>
+                </a>
             </nav>
             <div class="sidebar-bottom">
                 <div class="workspace-icon" role="img" aria-label="工作区图标">W</div>
@@ -32,11 +56,11 @@
         <aside class="sidebar secondary-sidebar" role="complementary">
 
             <nav class="sidebar-nav" role="navigation" aria-label="二级导航">
-                <a href="#" class="nav-item active" aria-current="page" title="项目">项目</a>
-                <a href="#" class="nav-item" title="任务">任务</a>
-                <a href="#" class="nav-item" title="日历">日历</a>
-                <a href="#" class="nav-item" title="文档">文档</a>
-                <a href="#" class="nav-item" title="团队">团队</a>
+                <a href="#" class="nav-item active" aria-current="page" title="项目"><i class="fas fa-project-diagram"></i> 项目</a>
+                <a href="#" class="nav-item" title="任务"><i class="fas fa-tasks"></i> 任务</a>
+                <a href="#" class="nav-item" title="日历"><i class="fas fa-calendar-alt"></i> 日历</a>
+                <a href="#" class="nav-item" title="文档"><i class="fas fa-file-alt"></i> 文档</a>
+                <a href="#" class="nav-item" title="团队"><i class="fas fa-users"></i> 团队</a>
             </nav>
         </aside>
 
