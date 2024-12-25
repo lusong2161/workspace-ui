@@ -57,6 +57,13 @@
   background-color: #388E3C;
 }
 
+.task-header {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #333;
+}
+
 .task-category {
   display: inline-block;
   color: white;

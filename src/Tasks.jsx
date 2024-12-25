@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { SearchContext } from './App';
 import { useTasks } from './hooks/useTasks';
 import TaskDetails from './components/TaskDetails';
+import ExportButton from './components/ExportButton';
 import './styles/categories.css';
 import './styles/drag-and-drop.css';
 import './styles/due-date.css';
@@ -129,6 +130,9 @@ function Tasks() {
         <button onClick={handleAddTask}>添加</button>
       </div>
 
+      <div className="task-header">
+        <ExportButton tasks={tasks} categories={categories} />
+      </div>
       <div className="task-list">
         {filteredTasks.map(task => (
           <div 
