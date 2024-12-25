@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { SearchContext } from './App';
 import { useTasks } from './hooks/useTasks';
 import './styles/categories.css';
+import './styles/drag-and-drop.css';
 
 function Tasks() {
   console.log('Tasks组件渲染开始');
@@ -17,8 +18,28 @@ function Tasks() {
     saveEdit,
     addCategory,
     deleteCategory,
-    updateCategory
+    updateCategory,
+    reorderTasks
   } = useTasks();
+
+  const handleDragStart = (e, index) => {
+    console.log('开始拖拽，索引:', index);
+    e.dataTransfer.setData('text/plain', index);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    console.log('拖拽经过');
+  };
+
+  const handleDrop = (e, targetIndex) => {
+    e.preventDefault();
+    const sourceIndex = parseInt(e.dataTransfer.getData('text/plain'));
+    console.log('放置任务', { sourceIndex, targetIndex });
+    if (sourceIndex !== targetIndex) {
+      reorderTasks(sourceIndex, targetIndex);
+    }
+  };
   const [newTask, setNewTask] = useState('');
   const { searchText } = useContext(SearchContext);
   
@@ -107,7 +128,13 @@ function Tasks() {
 
       <div className="task-list">
         {filteredTasks.map(task => (
-          <div key={task.id} className="task-item">
+          <div 
+            key={task.id} 
+            className="task-item"
+            draggable={!editingTask}
+            onDragStart={(e) => handleDragStart(e, filteredTasks.indexOf(task))}
+            onDragOver={handleDragOver}
+            onDrop={(e) => handleDrop(e, filteredTasks.indexOf(task))}>
             {editingTask?.id === task.id ? (
               <div className="task-edit-form">
                 <input

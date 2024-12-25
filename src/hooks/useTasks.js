@@ -165,6 +165,17 @@ export function useTasks() {
     return true;
   };
 
+  const reorderTasks = (sourceIndex, targetIndex) => {
+    console.log('重新排序任务', { sourceIndex, targetIndex });
+    setTasks(prevTasks => {
+      const newTasks = [...prevTasks];
+      const [movedTask] = newTasks.splice(sourceIndex, 1);
+      newTasks.splice(targetIndex, 0, movedTask);
+      console.log('重新排序后的任务列表:', newTasks);
+      return newTasks;
+    });
+  };
+
   return {
     tasks,
     categories,
@@ -177,6 +188,7 @@ export function useTasks() {
     saveEdit,
     addCategory,
     deleteCategory,
-    updateCategory
+    updateCategory,
+    reorderTasks
   };
 }
