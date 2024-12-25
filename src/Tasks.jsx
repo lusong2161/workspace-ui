@@ -6,7 +6,12 @@ function Tasks() {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [newTask, setNewTask] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [editingTask, setEditingTask] = useState(null);
+
+  const filteredTasks = tasks.filter(task => 
+    task.text.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -26,6 +31,10 @@ function Tasks() {
   };
 
   const deleteTask = (taskId) => {
+    const confirmed = window.confirm('确定要删除此任务吗？');
+    if (!confirmed) {
+      return;
+    }
     setTasks(tasks.filter(task => task.id !== taskId));
   };
 
@@ -83,8 +92,24 @@ function Tasks() {
         </button>
       </div>
 
+      <input
+        type="text"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        placeholder="搜索..."
+        style={{
+          padding: '0.5rem',
+          marginRight: '0.5rem',
+          backgroundColor: '#333',
+          border: 'none',
+          borderRadius: '4px',
+          color: '#fff',
+          width: '300px',
+          marginBottom: '1rem'
+        }}
+      />
       <div className="task-list" style={{ marginTop: '1rem' }}>
-        {tasks.map(task => (
+        {filteredTasks.map(task => (
           <div
             key={task.id}
             style={{
