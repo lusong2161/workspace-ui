@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 
 export function useTasks() {
+  const [categories, setCategories] = useState(() => {
+    console.log('初始化categories状态');
+    const savedCategories = localStorage.getItem('categories');
+    console.log('从localStorage读取的分类数据:', savedCategories);
+    return savedCategories ? JSON.parse(savedCategories) : [
+      { id: 'default', name: '默认分类', color: '#808080' }
+    ];
+  });
+
   const [tasks, setTasks] = useState(() => {
     console.log('初始化tasks状态');
     const savedTasks = localStorage.getItem('tasks');
@@ -18,6 +27,16 @@ export function useTasks() {
     }
   }, [tasks]);
 
+  useEffect(() => {
+    console.log('Categories状态更新，准备写入localStorage:', categories);
+    try {
+      localStorage.setItem('categories', JSON.stringify(categories));
+      console.log('成功写入分类数据到localStorage');
+    } catch (error) {
+      console.error('写入分类数据到localStorage失败:', error);
+    }
+  }, [categories]);
+
   const addTask = (newTaskText) => {
     console.log('添加任务被触发');
     console.log('任务内容:', newTaskText);
@@ -34,6 +53,7 @@ export function useTasks() {
       text: newTaskText.trim(),
       status: '进行中',
       priority: '中',
+      categoryId: 'default',
       createdAt: new Date().toISOString()
     };
     console.log('新建任务对象:', newTaskObj);
@@ -90,13 +110,73 @@ export function useTasks() {
     }
   };
 
+  const addCategory = (categoryName, color = '#808080') => {
+    console.log('添加分类被触发');
+    console.log('分类名称:', categoryName);
+    if (!categoryName.trim()) {
+      console.log('分类名称为空，显示警告');
+      return false;
+    }
+    const newCategory = {
+      id: Date.now().toString(),
+      name: categoryName.trim(),
+      color
+    };
+    console.log('新建分类对象:', newCategory);
+    setCategories(prevCategories => [...prevCategories, newCategory]);
+    console.log('分类添加完成');
+    return true;
+  };
+
+  const deleteCategory = (categoryId) => {
+    console.log('删除分类被触发, categoryId:', categoryId);
+    if (categoryId === 'default') {
+      console.log('默认分类不能删除');
+      return false;
+    }
+    setCategories(prevCategories => 
+      prevCategories.filter(category => category.id !== categoryId)
+    );
+    // 将该分类下的任务移动到默认分类
+    setTasks(prevTasks => 
+      prevTasks.map(task => 
+        task.categoryId === categoryId 
+          ? { ...task, categoryId: 'default' }
+          : task
+      )
+    );
+    console.log('分类删除完成');
+    return true;
+  };
+
+  const updateCategory = (categoryId, updates) => {
+    console.log('更新分类被触发, categoryId:', categoryId);
+    console.log('更新内容:', updates);
+    if (categoryId === 'default' && updates.name !== '默认分类') {
+      console.log('默认分类名称不能修改');
+      return false;
+    }
+    setCategories(prevCategories => 
+      prevCategories.map(category =>
+        category.id === categoryId ? { ...category, ...updates } : category
+      )
+    );
+    console.log('分类更新完成');
+    return true;
+  };
+
   return {
     tasks,
+    categories,
     editingTask,
+    setEditingTask,
     addTask,
     deleteTask,
     updateTask,
     startEditing,
-    saveEdit
+    saveEdit,
+    addCategory,
+    deleteCategory,
+    updateCategory
   };
 }

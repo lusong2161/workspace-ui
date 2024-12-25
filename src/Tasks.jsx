@@ -1,10 +1,24 @@
 import React, { useState, useContext } from 'react';
 import { SearchContext } from './App';
 import { useTasks } from './hooks/useTasks';
+import './styles/categories.css';
 
 function Tasks() {
   console.log('Tasks组件渲染开始');
-  const { tasks, editingTask, addTask, deleteTask, updateTask, startEditing, saveEdit } = useTasks();
+  const { 
+    tasks, 
+    categories,
+    editingTask, 
+    setEditingTask, 
+    addTask, 
+    deleteTask, 
+    updateTask, 
+    startEditing, 
+    saveEdit,
+    addCategory,
+    deleteCategory,
+    updateCategory
+  } = useTasks();
   const [newTask, setNewTask] = useState('');
   const { searchText } = useContext(SearchContext);
   
@@ -41,6 +55,37 @@ function Tasks() {
     <div className="tasks">
       <h2>任务列表</h2>
       
+      <div className="categories-section">
+        <h3>分类管理</h3>
+        <div className="categories-list">
+          {categories.map(category => (
+            <div key={category.id} className="category-item" style={{ borderColor: category.color }}>
+              <span>{category.name}</span>
+              {category.id !== 'default' && (
+                <button 
+                  onClick={() => deleteCategory(category.id)}
+                  className="delete-category-button"
+                >
+                  删除
+                </button>
+              )}
+            </div>
+          ))}
+          <button 
+            onClick={() => {
+              const name = prompt('请输入新分类名称：');
+              if (name) {
+                const color = prompt('请输入分类颜色（十六进制格式，如 #FF0000）：', '#808080');
+                addCategory(name, color);
+              }
+            }}
+            className="add-category-button"
+          >
+            添加分类
+          </button>
+        </div>
+      </div>
+      
       <div className="add-task-form">
         <input
           type="text"
@@ -74,6 +119,19 @@ function Tasks() {
                   }}
                 />
                 <select
+                  value={editingTask.categoryId}
+                  onChange={(e) => {
+                    console.log('修改任务分类:', e.target.value);
+                    setEditingTask({ ...editingTask, categoryId: e.target.value });
+                  }}
+                >
+                  {categories.map(category => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+                <select
                   value={editingTask.status}
                   onChange={(e) => {
                     console.log('修改任务状态:', e.target.value);
@@ -101,6 +159,17 @@ function Tasks() {
               <div className="task-content">
                 <div className="task-text">{task.text}</div>
                 <div className="task-metadata">
+                  <span 
+                    className="task-category"
+                    style={{ 
+                      backgroundColor: categories.find(c => c.id === task.categoryId)?.color || '#808080',
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      marginRight: '8px'
+                    }}
+                  >
+                    {categories.find(c => c.id === task.categoryId)?.name || '默认分类'}
+                  </span>
                   <span className={`task-status status-${task.status}`}>
                     {task.status}
                   </span>
