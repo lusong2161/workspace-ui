@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import './App.css';
 import Tasks from './Tasks';
 
+export const SearchContext = createContext();
+
 function App() {
   const [activeTab, setActiveTab] = useState('任务');
+  const [searchText, setSearchText] = useState('');
 
   return (
     <div className="app">
@@ -16,7 +19,12 @@ function App() {
       
       <div className="second-sidebar">
         <div className="search-box">
-          <input type="text" placeholder="搜索..." />
+          <input 
+            type="text" 
+            placeholder="搜索..." 
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
         </div>
         <div className="menu-items">
           <div className={`menu-item ${activeTab === '任务' ? 'active' : ''}`} onClick={() => setActiveTab('任务')}>
@@ -32,9 +40,11 @@ function App() {
       </div>
 
       <div className="main-content">
-        {activeTab === '任务' && <Tasks />}
-        {activeTab === '项目' && <div>项目内容</div>}
-        {activeTab === '看板' && <div>看板内容</div>}
+        <SearchContext.Provider value={{ searchText, setSearchText }}>
+          {activeTab === '任务' && <Tasks />}
+          {activeTab === '项目' && <div>项目内容</div>}
+          {activeTab === '看板' && <div>看板内容</div>}
+        </SearchContext.Provider>
       </div>
 
       <div className="right-sidebar">
