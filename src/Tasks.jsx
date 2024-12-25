@@ -3,6 +3,7 @@ import { SearchContext } from './App';
 import { useTasks } from './hooks/useTasks';
 import './styles/categories.css';
 import './styles/drag-and-drop.css';
+import './styles/due-date.css';
 
 function Tasks() {
   console.log('Tasks组件渲染开始');
@@ -180,6 +181,15 @@ function Tasks() {
                   <option value="中">中</option>
                   <option value="低">低</option>
                 </select>
+                <input
+                  type="date"
+                  value={editingTask.dueDate || ''}
+                  onChange={(e) => {
+                    console.log('修改到期日期:', e.target.value);
+                    setEditingTask({ ...editingTask, dueDate: e.target.value });
+                  }}
+                  className="date-picker"
+                />
                 <button onClick={saveEdit} className="save-button">保存</button>
               </div>
             ) : (
@@ -203,6 +213,11 @@ function Tasks() {
                   <span className={`task-priority priority-${task.priority}`}>
                     优先级：{task.priority}
                   </span>
+                  {task.dueDate && (
+                    <span className="task-due-date">
+                      到期日期：{new Date(task.dueDate).toLocaleDateString('zh-CN')}
+                    </span>
+                  )}
                 </div>
               </div>
             )}

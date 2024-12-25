@@ -54,7 +54,8 @@ export function useTasks() {
       status: '进行中',
       priority: '中',
       categoryId: 'default',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      dueDate: null
     };
     console.log('新建任务对象:', newTaskObj);
     setTasks(prevTasks => {
